@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PINPOINT NLP — 8-BIT ARCADE TERMINAL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/css/custom.css">
+</head>
+
+<body
+    class="crt-scanlines min-h-screen bg-[#0B0C10] text-[#FFFFFF] flex flex-col items-center justify-center p-2 sm:p-4 selection:bg-[#66FCF1] selection:text-[#000000]">
+    <div class="w-full max-w-2xl retro-chassis p-4 sm:p-6 my-auto">
+        <header
+            class="border-b-4 border-[#FFFFFF] pb-4 mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+                <div class="flex items-center space-x-2">
+                    <span class="w-3 h-3 bg-[#66FCF1] inline-block animate-pulse"></span>
+                    <h1 class="text-base sm:text-lg tracking-wider text-[#FFFFFF] font-bold">
+                        PINPOINT NLP
+                    </h1>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between sm:justify-end space-x-3">
+                <div class="flex">
+                    <button id="btn-lang-es"
+                        class="px-2.5 py-1 text-[10px] font-bold border-2 border-[#45A29E] bg-[#66FCF1] text-[#000000] retro-btn">
+                        ES
+                    </button>
+                    <button id="btn-lang-en"
+                        class="px-2.5 py-1 text-[10px] font-bold border-2 border-[#45A29E] bg-[#0B0C10] text-[#C5C6C7] retro-btn">
+                        EN
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="mb-4">
+            <div class="flex items-center justify-between text-[9px] text-[#45A29E] mb-2 tracking-wider">
+                <span data-i18n="levelLabel">NIVEL DE PISTAS:</span>
+                <span id="clue-counter" class="text-[#66FCF1]">1 / 5</span>
+            </div>
+            <div id="progress-indicators" class="grid grid-cols-5 gap-1.5 h-3">
+            </div>
+        </section>
+
+        <section id="clues-container" class="space-y-2 mb-4">
+        </section>
+
+        <div id="feedback-banner"
+            class="hidden p-3 bg-[#0B0C10] border-2 border-[#45A29E] mb-4 text-[10px] leading-relaxed">
+            <p id="feedback-message" class="text-center text-[#FFFFFF]"></p>
+        </div>
+
+        <section id="result-screen" class="hidden p-4 bg-[#0B0C10] mb-4 text-center">
+            <h2 id="result-title" class="text-sm sm:text-base font-bold mb-3 tracking-wider"></h2>
+            <div id="result-score" class="text-xs sm:text-sm font-bold my-2 text-[#66FCF1]"></div>
+            <p id="result-details" class="text-[9px] sm:text-[10px] text-[#FFFFFF] leading-relaxed mb-4 break-words">
+            </p>
+            <button id="restart-btn"
+                class="w-full py-3 bg-[#F59E0B] hover:bg-[#D97706] text-[#000000] text-xs font-bold retro-btn border-2 border-[#FFFFFF] tracking-wider">
+                [ INSERT COIN / REINTENTAR ]
+            </button>
+        </section>
+
+        <section id="input-container" class="bg-[#0B0C10] border-4 border-[#45A29E] p-2.5 mb-4">
+            <div class="flex flex-col sm:flex-row gap-2">
+                <input type="text" id="guess-input" autocomplete="off"
+                    class="retro-input flex-1 px-3 py-2.5 text-xs text-[#FFFFFF] placeholder:text-[#45A29E] tracking-wider uppercase"
+                    placeholder="> ESCRIBE TU RESPUESTA_" />
+                <div class="flex gap-2">
+                    <button id="submit-guess-btn"
+                        class="flex-1 sm:flex-none px-4 py-2.5 bg-[#45F3FF] hover:bg-[#66FCF1] active:bg-[#45A29E] text-[#000000] font-bold text-xs retro-btn tracking-wider">
+                        ENTER
+                    </button>
+                    <button id="reveal-clue-btn"
+                        class="px-3.5 py-2.5 bg-[#1F2833] hover:bg-[#0B0C10] text-[#66FCF1] border-2 border-[#45A29E] text-xs font-bold retro-btn"
+                        title="SALTAR Y REVELAR PISTA">
+                        &gt;&gt;
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="border-t-2 border-[#1F2833] pt-3 text-[8px] text-[#45A29E] space-y-2">
+            <div class="flex items-center justify-between">
+                <span>ESTADO: LISTO</span>
+                <span class="arcade-blink text-[#66FCF1]">CREDIT 01</span>
+            </div>
+
+            <details class="bg-[#0B0C10] border-2 border-[#1F2833] p-2 text-[8px]">
+                <summary class="cursor-pointer text-[#45A29E] hover:text-[#66FCF1] select-none uppercase">
+                    [+] Seleccionar
+                </summary>
+                <div class="mt-2.5 pt-2 border-t border-[#1F2833] flex flex-col sm:flex-row gap-2">
+                    <select id="demo-category-select"
+                        class="flex-1 bg-[#0B0C10] border border-[#45A29E] text-[#FFFFFF] px-2 py-1 text-[8px] focus:outline-none">
+                    </select>
+                    <button id="demo-load-btn"
+                        class="px-3 py-1 bg-[#45A29E] text-[#000000] font-bold retro-btn text-[8px]">
+                        FORZAR CATEGORÍA
+                    </button>
+                </div>
+            </details>
+        </footer>
+    </div>
+
+    <script src="/static/js/game.js"></script>
+</body>
+
+</html>

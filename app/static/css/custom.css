@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    border-radius: 0 !important;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    background-color: #0B0C10;
+    color: #FFFFFF;
+    image-rendering: pixelated;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.crt-scanlines {
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.28) 50%
+    );
+    background-size: 100% 4px;
+}
+
+.retro-chassis {
+    background-color: #1F2833;
+    border: 4px solid #FFFFFF;
+    box-shadow: 6px 6px 0px #000000;
+}
+
+.retro-border-subtle {
+    border: 2px solid #45A29E;
+    box-shadow: 3px 3px 0px #000000;
+}
+
+.retro-border-cyan {
+    border: 3px solid #66FCF1;
+    box-shadow: 4px 4px 0px #000000;
+}
+
+.retro-btn {
+    box-shadow: 4px 4px 0px #000000;
+    transition: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+.retro-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #000000;
+}
+
+.retro-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 4px 4px 0px #000000;
+}
+
+.retro-input {
+    background-color: #0B0C10;
+    border: 4px solid #45A29E;
+    color: #FFFFFF;
+    outline: none;
+}
+
+.retro-input:focus {
+    border-color: #66FCF1;
+}
+
+.retro-input:disabled {
+    opacity: 0.6;
+    border-color: #1F2833;
+    cursor: wait;
+}
+
+@keyframes arcadeBlink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+.arcade-blink {
+    animation: arcadeBlink 1s infinite;
+}
+
+@keyframes arcadeShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+}
+
+.arcade-shake {
+    animation: arcadeShake 0.2s steps(2, start) 2;
+}
