@@ -9,6 +9,7 @@ def test_index_view():
     response = client.get("/")
     assert response.status_code == 200
     assert "pinpoint" in response.text.lower()
+    assert "data-show-relation-tags" in response.text
 
 
 

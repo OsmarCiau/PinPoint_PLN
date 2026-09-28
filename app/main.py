@@ -25,6 +25,7 @@ def index_view(request: Request) -> HTMLResponse:
         context={
             "app_name": settings.app_name,
             "freeling_active": settings.is_freeling_available(),
+            "show_relation_tags": settings.show_relation_tags,
         },
     )
 

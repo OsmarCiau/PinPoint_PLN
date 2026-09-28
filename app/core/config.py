@@ -11,6 +11,7 @@ class Settings(BaseModel):
     freeling_config: str = "/opt/homebrew/share/freeling/config/es.cfg"
     supported_languages: list[str] = ["spa", "eng"]
     max_clues: int = 5
+    show_relation_tags: bool = False
 
     def get_freeling_env(self) -> dict[str, str]:
         env = os.environ.copy()

@@ -280,14 +280,19 @@ function renderClues() {
 
         if (isRevealed && clueData) {
             card.className = "flex items-center justify-between p-2.5 sm:p-3 bg-[#0B0C10] border-2 border-[#45A29E] shadow-[3px_3px_0px_#000000]";
+            const showRelationTags = Boolean(document.body && document.body.dataset.showRelationTags === "true");
+            const tagHtml = showRelationTags
+                ? `<span class="text-[8px] tracking-wider text-[#66FCF1] border border-[#45A29E] bg-[#1F2833] px-1.5 sm:px-2 py-0.5 uppercase shrink-0">
+                    [${clueData.relation_display.toUpperCase()}]
+                </span>`
+                : "";
+
             card.innerHTML = `
                 <div class="flex items-center space-x-2 sm:space-x-3 overflow-hidden">
                     <span class="text-[#66FCF1] text-xs font-bold font-mono shrink-0">#${index}</span>
                     <span class="text-[#FFFFFF] text-xs font-bold tracking-wider uppercase truncate">${clueData.text}</span>
                 </div>
-                <span class="text-[8px] tracking-wider text-[#66FCF1] border border-[#45A29E] bg-[#1F2833] px-1.5 sm:px-2 py-0.5 uppercase shrink-0">
-                    [${clueData.relation_display.toUpperCase()}]
-                </span>
+                ${tagHtml}
             `;
         } else {
             card.className = "flex items-center justify-between p-2.5 sm:p-3 bg-[#0B0C10] border-2 border-dashed border-[#1F2833] text-[#45A29E]";

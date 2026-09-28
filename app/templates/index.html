@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PINPOINT NLP — 8-BIT ARCADE TERMINAL</title>
+    <title>PINPOINT NLP</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/static/css/custom.css">
 </head>
 
-<body
+<body data-show-relation-tags="{{ 'true' if show_relation_tags else 'false' }}"
     class="crt-scanlines min-h-screen bg-[#0B0C10] text-[#FFFFFF] flex flex-col items-center justify-center p-2 sm:p-4 selection:bg-[#66FCF1] selection:text-[#000000]">
     <div class="w-full max-w-2xl retro-chassis p-4 sm:p-6 my-auto">
         <header
@@ -110,7 +110,7 @@
         </footer>
     </div>
 
-    <script src="/static/js/game.js"></script>
+    <script src="/static/js/game.js?v=2"></script>
 </body>
 
 </html>
